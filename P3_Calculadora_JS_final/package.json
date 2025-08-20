@@ -1,0 +1,17 @@
+{
+    "name": "P3_Calculadora_JS",
+    "author": "CORE-UPM",
+    "license": "GNU",
+    "version": "0.0.0",
+    "capturesFolder": "miscapturas",
+    "capturesNumber": 2,
+    "info": {
+        "githubURL": "CORE-UPM/P3_Calculadora_JS",
+        "serverUrl": "https://aat.dit.upm.es/",
+        "courseId": "395",
+        "assignmentId": "12967"
+    },
+    "dependencies": {
+        "autocorector": "^3.1.6"
+    }
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script>
+
+            const vaciar = () => {
+                document.getElementById("pantalla").value = "";
+            }
+            //metodo sq que hace el cuadrado de un numero y el cual es invocado en los escuchadores cuando se produce un click sobre el button
+            //
+            const sq = () => {
+                let num = document.getElementById("pantalla");
+                if(validar(num.value)){
+                num.value = num.value * num.value;
+                rellenar_info();
+                }
+            }
+            //
+            const fact = () => {
+                let num = document.getElementById("pantalla");
+                if(validar(num.value)){
+                if(num.value > 0){
+                let i;
+                for(i = num.value -1; i > 1; i--){
+                num.value = num.value * i;
+                }
+                    }else{
+                    num.value = 1;
+                  }
+                rellenar_info();
+                }
+            }
+
+            const mod = () => {
+                let num = document.getElementById("pantalla");
+                if(num.value < 0){
+                    num.value = -1 * num.value;
+                } else {
+                    num.value = num.value;
+                }
+            }
+
+            const sqr = () => {
+                let num = document.getElementById("pantalla");
+                if(validar(num.value)){
+                    num.value = Math.sqrt(num.value)
+                }
+                rellenar_info();
+            };
+            // las const add, sub, mul y div tiene como funcion:
+            // 1- recoger en una variable(num) lo que entre en pantalla y guardarlo en otra que esta fuera del sistema(numeroguardado)
+            // 2- almacenar un determinado simbolo (+,-,*,/) en una variable externa(operador) 
+            let numeroguardado
+            let operador;
+
+            const add = () => {
+                let num = document.getElementById("pantalla");
+                if(validar(num.value)){
+                numeroguardado = num.value;
+                operador = "+";
+                }
+            }
+
+            const sub = () => {
+                let num = document.getElementById("pantalla");
+                numeroguardado = num.value;
+                operador = "-";
+            }
+
+            const mul = () => {
+                let num = document.getElementById("pantalla");
+                if(validar(num.value)){
+                numeroguardado = num.value;
+                operador = "*";
+                }
+            }
+
+            const div = () => {
+                let num = document.getElementById("pantalla");
+                numeroguardado = num.value;
+                operador = "/";
+            }
+
+            //la const eq tiene como funcion:
+            //1- guardar en una variable(num) lo recibido por pantalla
+            //2- con un bloque switch segun cual sea el valor del operador (obtenido en las const anteriores)  
+            const eq = () => {
+                let num = document.getElementById("pantalla");
+                let resultado;
+                if(validar(num.value)){
+                switch(operador){
+                    case "+":
+                        resultado = parseFloat(numeroguardado) + parseFloat(num.value);
+                        break;
+                    case "-":
+                        resultado = +numeroguardado - +num.value;
+                        break;
+                    case "*":
+                        resultado = +numeroguardado * +num.value;
+                        break;
+                    case "/":
+                        resultado = +numeroguardado / +num.value;
+                        break;
+                    
+
+                }
+                num.value = resultado;
+                rellenar_info();
+                }
+            }
+
+            const sum = () => {
+                let num = document.getElementById("pantalla");
+                num.value = num.value.split(",").map(elem => parseFloat(elem)).
+                    reduce((a,b) => a+b,0);
+            }
+
+            const ord = () => {
+                let num = document.getElementById("pantalla");
+                num.value = num.value.split(",").map(elem => parseFloat(elem)).
+                sort().join(",");
+            }
+
+            const rev = () => {
+                let num = document.getElementById("pantalla");
+                num.value = num.value.split(",").map(elem => parseFloat(elem)).
+                reverse().join(",");
+            }
+
+            const quit = () => {
+                let num = document.getElementById("pantalla");
+                let list = num.value.split(",");
+                list.pop();
+                num.value = list;
+            }
+            //la const rellenar_info funciona:
+            //1- guardar en una variable(info) lo recibido del DOM con id="info" para pintarlo en pantalla al lado de <h2>
+            //2- guardar en una variable(num) lo que entra por pantalla
+            //3- segun el valor de de la variable(num) arroja un resultado
+            const rellenar_info = () => {
+                let info = document.getElementById("info");
+                let num = document.getElementById("pantalla")
+                if(num.value < 100){
+                    info.innerHTML = "Info: El resultado es menor que 100"
+                }else if(num.value > 100 && num.value < 200){
+                    info.innerHTML = "Info: El resultado está entre 100 y 200"
+                }else{
+                    info.innerHTML = "Info: El resultado es superior a 200"
+                }
+            }
+            
+            const validar = (numero) => {
+                let res = isNaN(numero);
+                if(res){
+                    document.getElementById("pantalla").value = "Error";
+                }
+                return !res;
+            }
+            //AÑADIR EVENTOS
+            //Aqui añadimos en pimero lugar un escuchador que hasta que no se cargue el html no empieza a escuchar
+            //Despues añadimos los sucesivos eventos que van asociados a los botones que al clicar aplican una funcion
+            document.addEventListener("DOMContentLoaded",function(){
+
+                document.getElementById("cuadrado").addEventListener("click",sq);
+                document.getElementById("factorial").addEventListener("click",fact);
+                document.getElementById("modulo").addEventListener("click",mod);
+                document.getElementById("raiz").addEventListener("click",sqr);
+
+
+                document.getElementById("suma").addEventListener("click",add);
+                document.getElementById("resta").addEventListener("click",sub);
+                document.getElementById("multiplicacion").addEventListener("click",mul);
+                document.getElementById("division").addEventListener("click",div);
+                document.getElementById("igual").addEventListener("click",eq);
+
+                document.getElementById("sumatorio").addEventListener("click",sum);
+                document.getElementById("ordenar").addEventListener("click",ord);
+                document.getElementById("revertir").addEventListener("click",rev);
+                document.getElementById("quitar").addEventListener("click",quit);
+
+
+            })
+        </script>
+    </head>
+    <body>
+        <h2 class="cabecera">Calculadora de CORE</h2>
+        Numero: <input type="text" id="pantalla" onclick="vaciar()">
+        <h2 id="info" class="grande" title="Info sobre el número">Info sobre el número</h2>
+        
+        <h3>Operaciones unitarias</h3>
+        <button id="raiz">raiz</button>
+        <button id="cuadrado">x<sup>2</sup></button>
+        <button id="factorial">x!</button>
+        <button id="modulo">modulo</button>
+        
+        <h3>Operaciones binarias</h3>
+        <button id="suma">+</button>
+        <button id="resta">-</button>
+        <button id="multiplicacion">*</button>
+        <button id="division">/</button>
+        <button id="igual">=</button>
+
+        <h3>Operaciones CSV</h3>
+        <button id="sumatorio">sumatorio</button>
+        <button id="ordenar">ordenar</button>
+        <button id="revertir">revertir</button>
+        <button id="quitar">quitar</button>
+        
+    </body>
+</html>
