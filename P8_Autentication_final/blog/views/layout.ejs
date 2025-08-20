@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<header id="mainHeader" class="main">
+    <nav>
+        <div>
+        <% if (!locals.loginUser) { %>
+            <a href="/login">Login</a>
+        <% } %>
+        <a href="/">Home</a>
+        <a href="/posts">Posts</a>
+        <a href="/author">Autor</a>
+        <a href="/posts/new">New Post</a>
+        <a href="/users">Users</a>
+        <a href="/users/new">Crear usuario</a>
+        </div>
+        <div>
+        <% if (locals.loginUser) { %>
+            <a href="/users/<%= loginUser.id %>"><%= loginUser.username %></a>
+            <a href="/login?_method=DELETE" class="logoutLink">Logout</a>
+        <% }%>
+        </div>
+    </nav>
+</header>
+<h1>Blog</h1>
+<div id="main-content">
+    <%- body %>
+</div>
+<footer>
+    <p>Desarrollado por Borja Vilallonga Tejela</p>
+</footer>
+</html>

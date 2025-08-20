@@ -1,0 +1,21 @@
+{
+    "name": "P8_Autenticacion",
+    "author": "CORE-UPM",
+    "license": "GNU",
+    "version": "0.1.1",
+    "capturesFolder": "miscapturas",
+    "capturesNumber": 5,
+    "info": {
+        "githubURL": "CORE-UPM/P8_Autenticacion",
+        "serverUrl": "https://aat.dit.upm.es/",
+        "courseId": "395",
+        "assignmentId": "12971"
+    },
+    "dependencies": {
+        "autocorector": "^3.1.6",
+        "express-session": "^1.17.3",
+        "sequelize": "^6.17.0",
+        "sequelize-cli": "^6.4.1",
+        "sqlite3": "^5.0.2"
+    }
+}
