@@ -1,0 +1,8 @@
+POST /calc HTTP/1.1
+Host: malamen.dit.upm.es
+Accept: application/json
+Conection: keep-alive
+Content-Type: application/json
+Content-Length: 12
+
+n1=3&n2=4&op=%2B 
