@@ -1,0 +1,38 @@
+
+
+body{
+    padding: 20px;
+    background-color: rgb(244, 238, 230);
+    font-size: 1.2em;
+}
+
+img{
+   padding: 5%;
+   width: 15%;
+   float: left; 
+}
+
+section{
+    padding: auto;
+    color: brown;
+    float: right;
+}
+h2{
+    color: rgb(69, 69, 145);
+    text-decoration: underline;
+
+}
+footer{
+    float: right;
+}
+/*selector id se hace con # */
+#containerbody{
+    flex-direction: column;
+}
+
+/*selector class se hace con .class */
+.verde {
+    color: green;
+
+}
+
